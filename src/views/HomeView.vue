@@ -1,12 +1,12 @@
 <template>
   <div class="home">
-    <HomePage msg="Welcome to Your Vue.js + TypeScript App" />
+    <HomePage />
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import HomePage from "@/components/HomePage/HomePage.vue";
+import HomePage from "@/components/HomePage.vue";
 
 export default defineComponent({
   name: "HomeView",
