@@ -21,28 +21,23 @@ export default defineComponent({
   data() {
     return {
       characters: [],
-      loading: false,
       offset: 0,
     };
   },
-  created() {
-    getCharacters(20, this.offset).then((data) => {
-      this.characters = data;
-    });
+  async created() {
+    await this.requestGetCharacters(20, this.offset);
   },
   mounted() {
     window.addEventListener("scroll", () => this.handleScroll());
   },
   methods: {
     loadMore() {
-      this.loading = true;
       this.offset += 20;
       getCharacters(20, this.offset).then((data) => {
         data.forEach((character) => {
           this.characters.push(character);
         });
       });
-      this.loading = false;
     },
     handleScroll() {
       let scrollTop = document.documentElement.scrollTop;
@@ -51,6 +46,15 @@ export default defineComponent({
 
       if (scrollTop + clientHeight >= scrollHeight) {
         this.loadMore();
+      }
+    },
+    async requestGetCharacters(limit: number, offset: number) {
+      try {
+        await getCharacters(limit, offset).then((data) => {
+          this.characters = data;
+        });
+      } catch (e) {
+        console.log(e);
       }
     },
   },

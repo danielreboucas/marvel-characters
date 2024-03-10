@@ -1,12 +1,16 @@
 <template>
-  <div class="favorites-page">Favorites</div>
+  <div class="favorites-page">
+    <FavoritesList />
+  </div>
 </template>
 
 <script>
 import { defineComponent } from "vue";
+import FavoritesList from "./FavoritesList.vue";
 
 export default defineComponent({
   name: "FavoritesPage",
+  components: [FavoritesList],
 });
 </script>
 

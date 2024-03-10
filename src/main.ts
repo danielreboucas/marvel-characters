@@ -11,6 +11,7 @@ import SearchBar from "./components/SearchBar.vue";
 
 import { OhVueIcon, addIcons } from "oh-vue-icons";
 import { MdFavoriteborder, MdFavorite } from "oh-vue-icons/icons";
+import FavoritesList from "./components/FavoritesList.vue";
 
 addIcons(MdFavoriteborder, MdFavorite);
 
@@ -22,6 +23,7 @@ app.use(router);
 app.component("v-icon", OhVueIcon);
 app.component("SearchBar", SearchBar);
 app.component("NavBar", NavBar);
+app.component("FavoritesList", FavoritesList);
 app.component("CharactersList", CharactersList);
 app.component("CharacterCard", CharacterCard);
 app.mount("#app");

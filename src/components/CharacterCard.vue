@@ -57,11 +57,13 @@ export default defineComponent({
       isFavorite: false,
     };
   },
-  created() {
+  mounted() {
     if (
-      JSON.parse(localStorage.getItem("favorites") || '""').includes(
-        this.character.id
-      )
+      JSON.parse(localStorage.getItem("favorites") || "[]").filter(
+        (data: any) => {
+          return data.id === this.character.id;
+        }
+      ).length > 0
     ) {
       this.isFavorite = true;
     } else {
@@ -71,11 +73,32 @@ export default defineComponent({
   methods: {
     addFavorite() {
       this.isFavorite = true;
-      this.$store.dispatch("addFavorite", this.character.id);
+      this.$store.dispatch("addFavorite", this.buildCharacter());
     },
     removeFavorite() {
       this.isFavorite = false;
-      this.$store.dispatch("removeFavorite", this.character.id);
+      this.$store.dispatch("removeFavorite", this.buildCharacter());
+      this.$emit("update-favorites");
+    },
+    buildCharacter() {
+      return {
+        id: this.character.id,
+        name: this.character.name,
+        thumbnail: {
+          path: this.character.thumbnail.path,
+          extension: this.character.thumbnail.extension,
+        },
+        description: this.character.description,
+        events: {
+          available: this.character.events.available,
+        },
+        comics: {
+          available: this.character.comics.available,
+        },
+        stories: {
+          available: this.character.stories.available,
+        },
+      };
     },
     moveToCharacterDetail() {
       window.open(this.character.urls[0].url);
