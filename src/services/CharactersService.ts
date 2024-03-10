@@ -9,3 +9,7 @@ export async function getCharacters(
   const data = await api.get(baseUrl + `?limit=${limit}&offset=${offset}`);
   return data.data.data.results;
 }
+
+export function getFavoriteCharacters(): any[] {
+  return JSON.parse(localStorage.getItem("favorites") || '"');
+}

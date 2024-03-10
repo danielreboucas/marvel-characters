@@ -2,16 +2,19 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    favoritesIds: [] as number[],
+    favorites: [] as any[],
   },
   mutations: {
     addFavorite(state, payload) {
-      state.favoritesIds.push(payload);
-      localStorage.setItem("favorites", JSON.stringify(state.favoritesIds));
+      state.favorites.push(payload);
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
     },
     removeFavorite(state, payload) {
-      state.favoritesIds.splice(state.favoritesIds.indexOf(payload), 1);
-      localStorage.setItem("favorites", JSON.stringify(state.favoritesIds));
+      state.favorites.splice(
+        state.favorites.findIndex((data: any) => data.id === payload.id),
+        1
+      );
+      localStorage.setItem("favorites", JSON.stringify(state.favorites));
     },
   },
   actions: {
