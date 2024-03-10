@@ -1,5 +1,5 @@
 <template>
-  <div class="character-card">
+  <div class="character-card min-h-96">
     <div class="max-w-sm rounded overflow-hidden shadow-lg">
       <img
         class="w-full cursor-pointer h-80"
@@ -24,7 +24,9 @@
           ></v-icon>
         </div>
 
-        <p class="text-gray-700 text-base">
+        <p
+          class="description text-gray-700 text-base overflow-hidden min-h-24 max-h-24"
+        >
           {{ character.description }}
         </p>
       </div>
@@ -115,3 +117,7 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+@import "./CharacterCard.scss";
+</style>

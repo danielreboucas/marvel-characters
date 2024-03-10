@@ -3,7 +3,7 @@
     <div
       v-for="(character, key) in characters"
       :key="key"
-      class="character-list h-full"
+      class="character-list min-h-96"
     >
       <CharacterCard :character="character" />
     </div>
