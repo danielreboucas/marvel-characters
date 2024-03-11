@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import FavoritesPage from "@/components/FavoritesPage.vue";
+import FavoritesPage from "@/components/FavoritesPage/FavoritesPage.vue";
 
 export default defineComponent({
   name: "HomeView",

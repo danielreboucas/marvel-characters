@@ -4,7 +4,7 @@
       <div>
         <img
           class="h-12 mr-5 rounded-sm"
-          src="../assets/images/marvel-logo-4-1.png"
+          src="../../assets/images/marvel-logo-4-1.png"
         />
       </div>
       <RouterLink
@@ -30,5 +30,5 @@ export default defineComponent({
 </script>
 
 <style>
-@import "./Navbar.scss";
+@import "./NavBar.scss";
 </style>

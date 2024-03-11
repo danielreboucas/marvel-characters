@@ -4,7 +4,7 @@
       <div class="empty-favorites-list flex flex-col items-center mt-6">
         <img
           class="grayscale h-[550px]"
-          src="../assets/images/confused-spider-man.jpeg"
+          src="../../assets/images/confused-spider-man.jpeg"
         />
         <p class="font-semibold text-lg">No favorite characters saved yet</p>
       </div>
@@ -26,8 +26,8 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { getFavoriteCharacters } from "../services/CharactersService";
-import CharacterCard from "./CharacterCard.vue";
+import { getFavoriteCharacters } from "../../services/CharactersService";
+import CharacterCard from "../CharacterCard/CharacterCard.vue";
 
 export default defineComponent({
   name: "CharactersList",

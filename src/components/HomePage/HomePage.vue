@@ -6,8 +6,8 @@
 </template>
 
 <script lang="ts">
-import CharactersList from "./CharactersList.vue";
-import SearchBar from "./SearchBar.vue";
+import CharactersList from "../CharactersList/CharactersList.vue";
+import SearchBar from "../SearchBar/SearchBar.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
