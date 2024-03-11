@@ -1,6 +1,6 @@
 <template>
-  <div class="homepage">
-    <SearchBar />
+  <div class="home-page">
+    <!-- <SearchBar /> -->
     <CharactersList />
   </div>
 </template>
