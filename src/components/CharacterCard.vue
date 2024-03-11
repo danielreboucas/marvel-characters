@@ -13,13 +13,13 @@
           <v-icon
             v-if="!isFavorite"
             name="md-favoriteborder"
-            class="cursor-pointer text-red-700"
+            class="cursor-pointer text-[#EC1D24]"
             @click.prevent="addFavorite"
           ></v-icon>
           <v-icon
             v-else
             name="md-favorite"
-            class="cursor-pointer text-red-700"
+            class="cursor-pointer text-[#EC1D24]"
             @click.prevent="removeFavorite"
           ></v-icon>
         </div>
