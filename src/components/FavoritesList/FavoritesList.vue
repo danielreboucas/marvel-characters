@@ -9,16 +9,24 @@
         <p class="font-semibold text-lg">No favorite characters saved yet</p>
       </div>
     </div>
-    <div v-else class="grid grid-cols-3 md:grid-cols-4 gap-4 m-5">
-      <div
-        v-for="(favoriteCharacter, key) in favoriteCharacters"
-        :key="key"
-        class="favorites-list h-full ease-in hover:scale-[1.1] transition duration-300"
-      >
-        <CharacterCard
-          :character="favoriteCharacter"
-          @update-favorites="updateFavorites"
-        />
+    <div v-else>
+      <Modal
+        :showModal="showModal"
+        :character="favoriteCharacter"
+        @close-modal="closeModal"
+      />
+      <div :class="`grid grid-cols-3 md:grid-cols-4 gap-4 m-5 ${isModalOpen}`">
+        <div
+          v-for="(favoriteCharacter, key) in favoriteCharacters"
+          :key="key"
+          class="favorites-list h-full ease-in hover:scale-[1.1] transition duration-300"
+        >
+          <CharacterCard
+            :character="favoriteCharacter"
+            @show-modal="showFavoriteCharacterModal"
+            @update-favorites="updateFavorites"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -34,16 +42,30 @@ export default defineComponent({
   component: [CharacterCard],
   data() {
     return {
+      favoriteCharacter: {},
       favoriteCharacters: [] as any[],
       offset: 0,
+      showModal: false,
     };
   },
   created() {
     this.requestGetFavoriteCharacters();
   },
+  computed: {
+    isModalOpen(): string {
+      return this.showModal ? "opacity-50" : "";
+    },
+  },
   methods: {
     updateFavorites() {
       this.requestGetFavoriteCharacters();
+    },
+    closeModal() {
+      this.showModal = false;
+    },
+    showFavoriteCharacterModal(e: any) {
+      this.favoriteCharacter = e;
+      this.showModal = !this.showModal;
     },
     requestGetFavoriteCharacters() {
       try {
