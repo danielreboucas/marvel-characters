@@ -1,5 +1,5 @@
 <template>
-  <header class="navbar fixed w-full top-0 space-y-5 bg-[#202020]">
+  <header class="navbar fixed w-full top-0 space-y-5 bg-[#202020] z-10">
     <nav class="ml-5 py-3 flex flex-row items-center gap-3 min-h-16 text-white">
       <div>
         <img
