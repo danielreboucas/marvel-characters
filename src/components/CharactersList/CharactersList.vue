@@ -1,6 +1,11 @@
 <template>
   <div>
     <Loading :loading="loading" />
+    <Modal
+      :showModal="showModal"
+      :character="character"
+      @close-modal="closeModal"
+    />
     <SearchBar @searchbar-input="filterCharactersByName" />
     <div
       :class="`grid grid-cols-3 md:grid-cols-4 gap-4 gap-y-9 m-5 ${isLoading}`"
@@ -10,7 +15,10 @@
         :key="key"
         class="character-list min-h-96 ease-in hover:scale-[1.1] transition duration-300"
       >
-        <CharacterCard :character="character" class="" />
+        <CharacterCard
+          :character="character"
+          @show-modal="showCharacterModal"
+        />
       </div>
     </div>
   </div>
@@ -29,14 +37,16 @@ export default defineComponent({
   data() {
     return {
       characters: [],
+      character: {},
       loading: false,
-      offset: 0,
       nameFilter: "",
+      offset: 0,
+      showModal: false,
     };
   },
   computed: {
     isLoading(): string {
-      return this.loading ? "opacity-50" : "";
+      return this.loading || this.showModal ? "opacity-50" : "";
     },
   },
   async created() {
@@ -55,6 +65,13 @@ export default defineComponent({
         this.loadMore();
       }
     },
+    showCharacterModal(e: any) {
+      this.character = e;
+      this.showModal = !this.showModal;
+    },
+    closeModal() {
+      this.showModal = false;
+    },
     async filterCharactersByName(characterName: string) {
       this.loading = true;
       this.nameFilter = characterName;
@@ -68,8 +85,8 @@ export default defineComponent({
       this.offset += 20;
 
       //TODO: REMOVE setTimeout
-      this.requestGetCharacters(20, this.offset, this.nameFilter);
       setTimeout(() => {
+        this.requestGetCharacters(20, this.offset, this.nameFilter);
         this.loading = false;
       }, 4000);
     },

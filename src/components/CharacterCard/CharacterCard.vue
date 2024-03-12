@@ -4,10 +4,14 @@
       <img
         class="w-full cursor-pointer h-80"
         :src="`${character.thumbnail.path}.${character.thumbnail.extension}`"
+        @click.prevent="showModal"
       />
       <div class="px-6 py-4">
         <div class="flex items-center justify-between">
-          <div class="font-bold text-xl mb-2 cursor-pointer">
+          <div
+            class="font-bold text-xl mb-2 cursor-pointer"
+            @click.prevent="showModal"
+          >
             {{ character.name }}
           </div>
           <v-icon
@@ -49,41 +53,23 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
+import Modal from "../Modal/Modal.vue";
 
 export default defineComponent({
   name: "CharactersCard",
+  component: [Modal],
   props: ["character"],
-  emits: ["update-favorites"],
+  emits: ["update-favorites", "show-modal"],
   data() {
     return {
       isFavorite: false,
     };
   },
   updated() {
-    if (
-      JSON.parse(localStorage.getItem("favorites") || "[]").filter(
-        (data: any) => {
-          return data.id === this.character.id;
-        }
-      ).length > 0
-    ) {
-      this.isFavorite = true;
-    } else {
-      this.isFavorite = false;
-    }
+    this.isCharacterInLocalStorage();
   },
   mounted() {
-    if (
-      JSON.parse(localStorage.getItem("favorites") || "[]").filter(
-        (data: any) => {
-          return data.id === this.character.id;
-        }
-      ).length > 0
-    ) {
-      this.isFavorite = true;
-    } else {
-      this.isFavorite = false;
-    }
+    this.isCharacterInLocalStorage();
   },
   methods: {
     addFavorite() {
@@ -115,17 +101,21 @@ export default defineComponent({
         },
       };
     },
-    moveToCharacterDetail() {
-      window.open(this.character.urls[0].url);
+    showModal() {
+      this.$emit("show-modal", this.character);
     },
-    moveToEvents() {
-      window.open(this.character.events.collectionURI);
-    },
-    moveToComics() {
-      window.open(this.character.comics.collectionURI);
-    },
-    moveToStories() {
-      window.open(this.character.stories.collectionURI);
+    isCharacterInLocalStorage() {
+      if (
+        JSON.parse(localStorage.getItem("favorites") || "[]").filter(
+          (data: any) => {
+            return data.id === this.character.id;
+          }
+        ).length > 0
+      ) {
+        this.isFavorite = true;
+      } else {
+        this.isFavorite = false;
+      }
     },
   },
 });
