@@ -1,5 +1,5 @@
 <template>
-  <div class="favorites">
+  <div class="favorites mt-24">
     <div v-if="favoriteCharacters.length === 0" class="">
       <div class="empty-favorites-list flex flex-col items-center mt-6">
         <img

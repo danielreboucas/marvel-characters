@@ -23,7 +23,6 @@
             @click.prevent="removeFavorite"
           ></v-icon>
         </div>
-
         <p
           class="description text-gray-700 text-base overflow-hidden min-h-24 max-h-24"
         >
@@ -54,10 +53,24 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "CharactersCard",
   props: ["character"],
+  emits: ["update-favorites"],
   data() {
     return {
       isFavorite: false,
     };
+  },
+  updated() {
+    if (
+      JSON.parse(localStorage.getItem("favorites") || "[]").filter(
+        (data: any) => {
+          return data.id === this.character.id;
+        }
+      ).length > 0
+    ) {
+      this.isFavorite = true;
+    } else {
+      this.isFavorite = false;
+    }
   },
   mounted() {
     if (

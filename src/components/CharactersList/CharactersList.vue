@@ -1,19 +1,16 @@
 <template>
   <div>
-    <!-- <div v-show="loading" class="fixed top-[46%] left-[46%]">
-      <img
-        src="../assets/images/spinner.svg"
-        class="motion-reduce:animate-spin h-20"
-      />
-    </div> -->
     <Loading :loading="loading" />
-    <div :class="`grid grid-cols-3 md:grid-cols-4 gap-4 m-5 ${isLoading}`">
+    <SearchBar @searchbar-input="filterCharactersByName" />
+    <div
+      :class="`grid grid-cols-3 md:grid-cols-4 gap-4 gap-y-9 m-5 ${isLoading}`"
+    >
       <div
         v-for="(character, key) in characters"
         :key="key"
-        class="character-list min-h-96"
+        class="character-list min-h-96 ease-in hover:scale-[1.1] transition duration-300"
       >
-        <CharacterCard :character="character" />
+        <CharacterCard :character="character" class="" />
       </div>
     </div>
   </div>
@@ -24,15 +21,17 @@ import { defineComponent } from "vue";
 import { getCharacters } from "../../services/CharactersService";
 import CharacterCard from "../CharacterCard/CharacterCard.vue";
 import Loading from "../Loading/Loading.vue";
+import SearchBar from "../SearchBar/SearchBar.vue";
 
 export default defineComponent({
   name: "CharactersList",
-  component: [CharacterCard, Loading],
-  data: (): any => {
+  component: [CharacterCard, Loading, SearchBar],
+  data() {
     return {
       characters: [],
       loading: false,
       offset: 0,
+      nameFilter: "",
     };
   },
   computed: {
@@ -41,7 +40,7 @@ export default defineComponent({
     },
   },
   async created() {
-    await this.requestGetCharacters(20, this.offset);
+    await this.requestGetCharacters(20, this.offset, this.nameFilter);
   },
   mounted() {
     window.addEventListener("scroll", () => this.handleScroll());
@@ -56,20 +55,28 @@ export default defineComponent({
         this.loadMore();
       }
     },
+    async filterCharactersByName(characterName: string) {
+      this.loading = true;
+      this.nameFilter = characterName;
+      this.characters = [];
+      this.offset = 0;
+      await this.requestGetCharacters(20, this.offset, this.nameFilter);
+      this.loading = false;
+    },
     async loadMore() {
       this.loading = true;
       this.offset += 20;
 
-      //TODO REMOVE setTimeout
+      //TODO: REMOVE setTimeout
       setTimeout(() => {
-        this.requestGetCharacters(20, this.offset);
+        this.requestGetCharacters(20, this.offset, this.nameFilter);
         this.loading = false;
-      }, 5000);
+      }, 4000);
     },
-    async requestGetCharacters(limit: number, offset: number) {
+    async requestGetCharacters(limit: number, offset: number, name?: string) {
       try {
         this.loading = true;
-        getCharacters(limit, offset).then((data) => {
+        getCharacters(limit, offset, name).then((data) => {
           data.forEach((character) => {
             this.characters.push(character);
           });
