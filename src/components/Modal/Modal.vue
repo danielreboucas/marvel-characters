@@ -4,8 +4,8 @@
     class="container fixed flex bg-[#202020] text-white rounded top-[35%] left-[40%] w-[500px] h-[350px] z-10"
     role="dialog"
   >
-    <div class="flex my-7">
-      <div class="here flex flex-col justify-between">
+    <div class="flex my-7 w-full">
+      <div class="here flex flex-col justify-between w-full">
         <div class="flex flex-col gap-4">
           <div class="flex justify-between">
             <h5 class="font-bold">{{ character.name }}</h5>
