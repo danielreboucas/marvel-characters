@@ -68,14 +68,15 @@ export default defineComponent({
       this.offset += 20;
 
       //TODO: REMOVE setTimeout
+      this.requestGetCharacters(20, this.offset, this.nameFilter);
       setTimeout(() => {
-        this.requestGetCharacters(20, this.offset, this.nameFilter);
         this.loading = false;
       }, 4000);
     },
     async requestGetCharacters(limit: number, offset: number, name?: string) {
       try {
         this.loading = true;
+
         getCharacters(limit, offset, name).then((data) => {
           data.forEach((character) => {
             this.characters.push(character);

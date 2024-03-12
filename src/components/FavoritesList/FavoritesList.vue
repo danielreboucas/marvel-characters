@@ -13,7 +13,7 @@
       <div
         v-for="(favoriteCharacter, key) in favoriteCharacters"
         :key="key"
-        class="favorites-list h-full"
+        class="favorites-list h-full ease-in hover:scale-[1.1] transition duration-300"
       >
         <CharacterCard
           :character="favoriteCharacter"
