@@ -1,5 +1,5 @@
 <template>
-  <div class="favorites-page">
+  <div>
     <FavoritesList />
   </div>
 </template>

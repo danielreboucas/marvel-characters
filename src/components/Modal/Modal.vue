@@ -5,7 +5,7 @@
     role="dialog"
   >
     <div class="flex my-7 w-full">
-      <div class="here flex flex-col justify-between w-full">
+      <div class="flex flex-col justify-between w-full">
         <div class="flex flex-col gap-4">
           <div class="flex justify-between">
             <h5

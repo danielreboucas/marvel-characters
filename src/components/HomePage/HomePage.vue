@@ -1,5 +1,5 @@
 <template>
-  <div class="home-page mt-24">
+  <div class="mt-24">
     <CharactersList />
   </div>
 </template>

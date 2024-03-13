@@ -1,7 +1,7 @@
 <template>
-  <div class="favorites mt-24">
-    <div v-if="favoriteCharacters.length === 0" class="">
-      <div class="empty-favorites-list flex flex-col items-center mt-6">
+  <div class="mt-24">
+    <div v-if="favoriteCharacters.length === 0">
+      <div class="flex flex-col items-center mt-6">
         <img
           class="grayscale h-[550px]"
           src="../../assets/images/confused-spider-man.jpeg"
@@ -19,7 +19,7 @@
         <div
           v-for="(favoriteCharacter, key) in favoriteCharacters"
           :key="key"
-          class="favorites-list h-full ease-in hover:scale-[1.1] transition duration-300"
+          class="h-full ease-in hover:scale-[1.1] transition duration-300"
         >
           <CharacterCard
             :character="favoriteCharacter"

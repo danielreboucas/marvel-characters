@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div>
     <div class="m-5">
       <label for="first_name" class="mb-2 text-sm font-medium text-gray-600"
         >Search for a character name:</label

@@ -13,7 +13,7 @@
       <div
         v-for="(character, key) in characters"
         :key="key"
-        class="character-list min-h-96 ease-in hover:scale-[1.1] transition duration-300"
+        class="min-h-96 ease-in hover:scale-[1.1] transition duration-300"
       >
         <CharacterCard
           :character="character"

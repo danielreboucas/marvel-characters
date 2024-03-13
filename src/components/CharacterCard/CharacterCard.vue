@@ -1,5 +1,5 @@
 <template>
-  <div class="character-card min-h-96">
+  <div class="min-h-96">
     <div class="max-w-sm rounded overflow-hidden shadow-lg">
       <img
         class="w-full cursor-pointer h-80"
@@ -36,7 +36,7 @@
           ></v-icon>
         </div>
         <p
-          class="description text-gray-700 text-base overflow-hidden min-h-24 max-h-24"
+          class="text-gray-700 text-base overflow-hidden min-h-24 max-h-24"
           :aria-label="`${character.name} Description: ${character.description}`"
           :tabindex="0"
         >
