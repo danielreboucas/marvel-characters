@@ -3,13 +3,17 @@
     <div class="max-w-sm rounded overflow-hidden shadow-lg">
       <img
         class="w-full cursor-pointer h-80"
+        :aria-label="`Character Image Content: ${character.name}`"
         :src="`${character.thumbnail.path}.${character.thumbnail.extension}`"
+        :tabindex="0"
         @click.prevent="showModal"
       />
       <div class="px-6 py-4">
         <div class="flex items-center justify-between">
           <div
             class="font-bold text-xl mb-2 cursor-pointer"
+            :aria-label="`Character Name Content: ${character.name}`"
+            :tabindex="0"
             @click.prevent="showModal"
           >
             {{ character.name }}
@@ -18,17 +22,23 @@
             v-if="!isFavorite"
             name="md-favoriteborder"
             class="cursor-pointer text-[#EC1D24]"
+            :aria-label="`Favorite Button: Click to save ${character.name} as favorite`"
+            :tabindex="0"
             @click.prevent="addFavorite"
           ></v-icon>
           <v-icon
             v-else
             name="md-favorite"
             class="cursor-pointer text-[#EC1D24]"
+            :aria-label="`Unfavorite Button: Click to remove ${character.name} from favorites`"
+            :tabindex="0"
             @click.prevent="removeFavorite"
           ></v-icon>
         </div>
         <p
           class="description text-gray-700 text-base overflow-hidden min-h-24 max-h-24"
+          :aria-label="`${character.name} Description: ${character.description}`"
+          :tabindex="0"
         >
           {{ character.description }}
         </p>
@@ -36,14 +46,20 @@
       <div class="px-6 pt-4 pb-2">
         <span
           class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+          :aria-label="`${character.name} Number of Events: ${character.events.available}`"
+          :tabindex="0"
           >{{ character.events.available }} Events</span
         >
         <span
           class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+          :aria-label="`${character.name} Number of Events: ${character.comics.available}`"
+          :tabindex="0"
           >{{ character.comics.available }} Comics</span
         >
         <span
           class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2"
+          :aria-label="`${character.name} Number of Events: ${character.stories.available}`"
+          :tabindex="0"
           >{{ character.stories.available }} Stories</span
         >
       </div>

@@ -10,11 +10,13 @@
       <RouterLink
         to="/"
         class="hover:border-b-2 hover:border-[#EC1D24] delay-75 h-7 font-semibold"
+        aria-label="Navbar Home button"
         >Home</RouterLink
       >
       <RouterLink
         to="/favorites"
         class="hover:border-b-2 hover:border-[#EC1D24] delay-75 h-7 font-semibold"
+        aria-label="Navbar Favorites button"
         >Favorites</RouterLink
       >
     </nav>

@@ -8,15 +8,26 @@
       <div class="here flex flex-col justify-between w-full">
         <div class="flex flex-col gap-4">
           <div class="flex justify-between">
-            <h5 class="font-bold">{{ character.name }}</h5>
+            <h5
+              class="font-bold"
+              :aria-label="`Modal Title: ${character.name}`"
+              :tabindex="0"
+            >
+              {{ character.name }}
+            </h5>
             <v-icon
               name="md-close"
               class="cursor-pointer hover:bg-white hover:text-black rounded font-bold"
+              :aria-label="`Modal Close Button: Click to close the modal.`"
+              :tabindex="0"
               @click.prevent="closeModal"
             />
           </div>
           <div class="text-justify">
-            <p>
+            <p
+              :aria-label="`${character.name} Modal Description: ${character.description}`"
+              :tabindex="0"
+            >
               {{
                 character.description
                   ? character.description
@@ -29,6 +40,7 @@
           <button
             type="button"
             class="hover:bg-white hover:text-black w-[15%] h-7 duration-150 rounded font-semibold"
+            :aria-label="`Modal Close Button: Click to close the modal.`"
             @click.prevent="closeModal"
           >
             Close
