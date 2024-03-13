@@ -73,28 +73,19 @@ export default defineComponent({
       this.showModal = false;
     },
     async filterCharactersByName(characterName: string) {
-      this.loading = true;
       this.nameFilter = characterName;
       this.characters = [];
       this.offset = 0;
       await this.requestGetCharacters(20, this.offset, this.nameFilter);
-      this.loading = false;
     },
     async loadMore() {
-      this.loading = true;
       this.offset += 20;
-
-      //TODO: REMOVE setTimeout
-      setTimeout(() => {
-        this.requestGetCharacters(20, this.offset, this.nameFilter);
-        this.loading = false;
-      }, 4000);
+      this.requestGetCharacters(20, this.offset, this.nameFilter);
     },
     async requestGetCharacters(limit: number, offset: number, name?: string) {
       try {
         this.loading = true;
-
-        getCharacters(limit, offset, name).then((data) => {
+        await getCharacters(limit, offset, name).then((data) => {
           data.forEach((character) => {
             this.characters.push(character);
           });
